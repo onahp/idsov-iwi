@@ -27,19 +27,33 @@
 
 <main>
   {#if loading}
-    <div style="display: flex; flex: 1; align-items: center; justify-content: center">
-      <mwc-circular-progress indeterminate />
+<div class="loader-container">
+<mwc-circular-progress indeterminate />
     </div>
   {:else}
-    <div id="content" style="display: flex; flex-direction: column; flex: 1;">
-      <CreatePanui></CreatePanui>
-      <div id="content"><PanuiKatoa></PanuiKatoa></div>
-    </div>
+<div class="content-container">
+<CreatePanui></CreatePanui>
+<PanuiKatoa></PanuiKatoa>
+</div>
   {/if}
 </main>
 
 <style>
-  main {
+.loader-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  .content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem;
+  }
+main {
     text-align: center;
     padding: 1em;
     max-width: 240px;
