@@ -1,0 +1,19 @@
+---
+manifest_version: "1"
+name: iwi
+integrity:
+  network_seed: ~
+  properties: ~
+  origin_time: 1701055826670588
+  zomes:
+    - name: panui_integrity
+      hash: ~
+      bundled: "../../../target/wasm32-unknown-unknown/release/panui_integrity.wasm"
+      dependencies: ~
+coordinator:
+  zomes:
+    - name: panui
+      hash: ~
+      bundled: "../../../target/wasm32-unknown-unknown/release/panui.wasm"
+      dependencies:
+        - name: panui_integrity
