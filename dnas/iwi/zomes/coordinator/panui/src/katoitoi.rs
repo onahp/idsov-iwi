@@ -1,5 +1,6 @@
 use hdk::prelude::*;
 use panui_integrity::*;
+
 #[hdk_extern]
 pub fn create_katoitoi(katoitoi: Katoitoi) -> ExternResult<Record> {
     let katoitoi_hash = create_entry(&EntryTypes::Katoitoi(katoitoi.clone()))?;
@@ -17,14 +18,17 @@ pub fn create_katoitoi(katoitoi: Katoitoi) -> ExternResult<Record> {
         )?;
     Ok(record)
 }
+
 #[hdk_extern]
 pub fn get_katoitoi(katoitoi_hash: ActionHash) -> ExternResult<Option<Record>> {
     get(katoitoi_hash, GetOptions::default())
 }
+
 #[hdk_extern]
 pub fn delete_katoitoi(original_katoitoi_hash: ActionHash) -> ExternResult<ActionHash> {
     delete_entry(original_katoitoi_hash)
 }
+
 #[hdk_extern]
 pub fn get_katoitois_for_panui(panui_hash: ActionHash) -> ExternResult<Vec<Record>> {
     let links = get_links(panui_hash, LinkTypes::PanuiToKatoitois, None)?;

@@ -1,10 +1,12 @@
 use hdi::prelude::*;
+
 #[hdk_entry_helper]
 #[derive(Clone, PartialEq)]
 pub struct Katoitoi {
     pub katoitoi: String,
     pub panui_hash: ActionHash,
 }
+
 pub fn validate_create_katoitoi(
     _action: EntryCreationAction,
     katoitoi: Katoitoi,
@@ -21,6 +23,7 @@ pub fn validate_create_katoitoi(
         )?;
     Ok(ValidateCallbackResult::Valid)
 }
+
 pub fn validate_update_katoitoi(
     _action: Update,
     _katoitoi: Katoitoi,
@@ -29,6 +32,7 @@ pub fn validate_update_katoitoi(
 ) -> ExternResult<ValidateCallbackResult> {
     Ok(ValidateCallbackResult::Invalid(String::from("Katoitois cannot be updated")))
 }
+
 pub fn validate_delete_katoitoi(
     _action: Delete,
     _original_action: EntryCreationAction,
@@ -36,6 +40,7 @@ pub fn validate_delete_katoitoi(
 ) -> ExternResult<ValidateCallbackResult> {
     Ok(ValidateCallbackResult::Valid)
 }
+
 pub fn validate_create_link_panui_to_katoitois(
     _action: CreateLink,
     base_address: AnyLinkableHash,
@@ -66,6 +71,7 @@ pub fn validate_create_link_panui_to_katoitois(
         )?;
     Ok(ValidateCallbackResult::Valid)
 }
+
 pub fn validate_delete_link_panui_to_katoitois(
     _action: DeleteLink,
     _original_action: CreateLink,

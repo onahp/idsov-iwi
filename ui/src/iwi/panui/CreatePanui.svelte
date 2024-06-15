@@ -6,13 +6,14 @@ import type { Panui } from './types';
 import '@material/mwc-button';
 import '@material/mwc-snackbar';
 import type { Snackbar } from '@material/mwc-snackbar';
+// import { ping } from 'ping';
 
 import '@material/mwc-textfield';
 import '@material/mwc-textarea';
+    import { debug } from 'svelte/internal';
 let client: AppAgentClient = (getContext(clientContext) as any).getClient();
 
 const dispatch = createEventDispatcher();
-
 
 let title: string = '';
 let content: string = '';
@@ -24,6 +25,18 @@ $: isPanuiValid = true && title !== '' && content !== '';
 
 onMount(() => {
 });
+  
+async function test() {
+  var ping = require('ping');
+  var hosts = ['google.com', 'yahoo.com'];
+  let something;
+
+  for (let host of hosts) {
+  //   let res = await ping.promise.probe(host);
+  //   console.log(res);
+  }
+  return hosts;
+}
 
 async function createPanui() {  
   const panuiEntry: Panui = { 
@@ -39,6 +52,8 @@ async function createPanui() {
       fn_name: 'create_panui',
       payload: panuiEntry,
     });
+    let something = test();
+    console.log(something);
     dispatch('panui-created', { panuiHash: record.signed_action.hashed.hash });
   } catch (e) {
     errorSnackbar.labelText = `Error creating the panui: ${e.data.data}`;

@@ -1,5 +1,6 @@
 use hdk::prelude::*;
 use panui_integrity::*;
+
 #[hdk_extern]
 pub fn create_panui(panui: Panui) -> ExternResult<Record> {
     let panui_hash = create_entry(&EntryTypes::Panui(panui.clone()))?;
@@ -13,6 +14,7 @@ pub fn create_panui(panui: Panui) -> ExternResult<Record> {
     create_link(path.path_entry_hash()?, panui_hash.clone(), LinkTypes::PanuiKatoa, ())?;
     Ok(record)
 }
+
 #[hdk_extern]
 pub fn get_panui(original_panui_hash: ActionHash) -> ExternResult<Option<Record>> {
     let links = get_links(original_panui_hash.clone(), LinkTypes::PanuiUpdates, None)?;
@@ -25,12 +27,14 @@ pub fn get_panui(original_panui_hash: ActionHash) -> ExternResult<Option<Record>
     };
     get(latest_panui_hash, GetOptions::default())
 }
+
 #[derive(Serialize, Deserialize, Debug)]
 pub struct UpdatePanuiInput {
     pub original_panui_hash: ActionHash,
     pub previous_panui_hash: ActionHash,
     pub updated_panui: Panui,
 }
+
 #[hdk_extern]
 pub fn update_panui(input: UpdatePanuiInput) -> ExternResult<Record> {
     let updated_panui_hash = update_entry(
@@ -51,6 +55,7 @@ pub fn update_panui(input: UpdatePanuiInput) -> ExternResult<Record> {
         )?;
     Ok(record)
 }
+
 #[hdk_extern]
 pub fn delete_panui(original_panui_hash: ActionHash) -> ExternResult<ActionHash> {
     delete_entry(original_panui_hash)

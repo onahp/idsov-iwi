@@ -1,16 +1,19 @@
 use hdi::prelude::*;
+
 #[hdk_entry_helper]
 #[derive(Clone, PartialEq)]
 pub struct Panui {
     pub title: String,
     pub content: String,
 }
+
 pub fn validate_create_panui(
     _action: EntryCreationAction,
     _panui: Panui,
 ) -> ExternResult<ValidateCallbackResult> {
     Ok(ValidateCallbackResult::Valid)
 }
+
 pub fn validate_update_panui(
     _action: Update,
     _panui: Panui,
@@ -19,6 +22,7 @@ pub fn validate_update_panui(
 ) -> ExternResult<ValidateCallbackResult> {
     Ok(ValidateCallbackResult::Valid)
 }
+
 pub fn validate_delete_panui(
     _action: Delete,
     _original_action: EntryCreationAction,
@@ -26,6 +30,7 @@ pub fn validate_delete_panui(
 ) -> ExternResult<ValidateCallbackResult> {
     Ok(ValidateCallbackResult::Valid)
 }
+
 pub fn validate_create_link_panui_updates(
     _action: CreateLink,
     base_address: AnyLinkableHash,
@@ -56,6 +61,7 @@ pub fn validate_create_link_panui_updates(
         )?;
     Ok(ValidateCallbackResult::Valid)
 }
+
 pub fn validate_delete_link_panui_updates(
     _action: DeleteLink,
     _original_action: CreateLink,
@@ -69,6 +75,7 @@ pub fn validate_delete_link_panui_updates(
         ),
     )
 }
+
 pub fn validate_create_link_panui_katoa(
     _action: CreateLink,
     _base_address: AnyLinkableHash,
@@ -90,6 +97,7 @@ pub fn validate_create_link_panui_katoa(
     // TODO: add the appropriate validation rules
     Ok(ValidateCallbackResult::Valid)
 }
+
 pub fn validate_delete_link_panui_katoa(
     _action: DeleteLink,
     _original_action: CreateLink,
